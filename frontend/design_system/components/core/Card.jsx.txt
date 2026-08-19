@@ -1,0 +1,13 @@
+import React from 'react';
+
+export function Card({ children, padding = 'lg', plate = false }) {
+  const style = {
+    background: plate ? 'var(--surface-plate)' : 'var(--surface-card)',
+    color: plate ? 'var(--text-on-plate)' : 'var(--text-primary)',
+    border: `1px solid ${plate ? 'var(--border-on-plate)' : 'var(--border-default)'}`,
+    borderRadius: 'var(--radius-md)',
+    boxShadow: 'var(--shadow-card)',
+    padding: padding === 'sm' ? 'var(--sp-4)' : padding === 'md' ? 'var(--sp-5)' : 'var(--sp-6)',
+  };
+  return React.createElement('div', { style }, children);
+}

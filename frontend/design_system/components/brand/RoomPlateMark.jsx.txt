@@ -1,0 +1,13 @@
+import React from 'react';
+
+export function RoomPlateMark({ size = 'md' }) {
+  const fs = size === 'sm' ? '10px' : size === 'lg' ? '15px' : '12px';
+  const pad = size === 'sm' ? '4px 8px' : size === 'lg' ? '9px 14px' : '6px 10px';
+  return React.createElement('span', {
+    style: {
+      display: 'inline-block', background: 'var(--spruce-0)', color: 'var(--paper-0)',
+      fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: fs, letterSpacing: '0.14em',
+      textTransform: 'uppercase', padding: pad, borderRadius: 'var(--radius-sm)',
+    },
+  }, 'LovingNewHome');
+}

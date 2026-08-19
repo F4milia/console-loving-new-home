@@ -1,0 +1,22 @@
+:root{
+--font-display:'Archivo',system-ui,sans-serif;
+--font-body:'Public Sans',system-ui,sans-serif;
+--font-mono:'IBM Plex Mono',ui-monospace,monospace;
+--font-mono-figures:'Martian Mono','IBM Plex Mono',ui-monospace,monospace;
+--tracking-signage:0.08em;
+--tracking-label:0.06em;
+--tracking-normal:0;
+--lh-tight:1.08; /* @kind other */
+--lh-heading:1.2; /* @kind other */
+--lh-body:1.55; /* @kind other */
+--fs-display-lg:clamp(2.4rem,5vw + 1rem,4.2rem); /* @kind other */
+--fs-display-md:clamp(1.8rem,3vw + 1rem,2.6rem); /* @kind other */
+--fs-display-sm:1.5rem;
+--fs-heading:1.15rem;
+--fs-body-lg:1.15rem;
+--fs-body:1rem;
+--fs-body-sm:0.9rem;
+--fs-label:0.8rem;
+--fs-mono-lg:1.6rem;
+--fs-mono:1rem;
+}

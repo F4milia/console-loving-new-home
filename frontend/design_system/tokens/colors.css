@@ -1,0 +1,38 @@
+/* Palette mirrors loving-new-home's client/app/globals.css brand tokens
+   (canvas/ink/primary/accent/line/danger) so the console reads as the same
+   product, not a separate tool. */
+:root{
+--paper-0:#f5f5f0;--paper-1:#eeece1;--paper-2:#e3e0d2;
+--ink-0:#1e2e2c;--ink-1:#2f5d56;--ink-2:#4a5a57;--ink-3:#6b7c78;--ink-4:#9aa5a0;
+--brass-0:#c98a3e;--brass-1:#a86f2f;--brass-2:#e0ad6b;
+--teal-0:#2f5d56;--teal-1:#1e3f3a;
+--ok-0:#2f5d56;--warn-0:#c98a3e;--err-0:#b3432b;
+--amber-0:#c98a3e;--amber-1:#a86f2f;--brick-0:#b3432b;--spruce-0:#2f5d56;--grey-0:#6b6b63;
+--line-hairline:rgba(30,46,44,0.14);--line-hairline-on-dark:rgba(245,245,240,0.22);
+--overlay-hover-on-dark:rgba(245,245,240,0.05);
+--surface-page:var(--paper-0);
+--surface-card:var(--paper-0);
+--surface-recessed:var(--paper-1);
+--surface-plate:var(--ink-0);
+--surface-plate-raised:var(--ink-1);
+--text-primary:var(--ink-0);
+--text-secondary:var(--ink-2);
+--text-muted:var(--ink-3);
+--text-on-plate:var(--paper-0);
+--text-on-plate-muted:var(--ink-4);
+--accent:var(--brass-0);
+--accent-strong:var(--brass-1);
+--accent-soft:var(--brass-2);
+--link:var(--teal-0);
+--link-hover:var(--teal-1);
+--focus-ring:var(--brass-0);
+--border-default:var(--line-hairline);
+--border-on-plate:var(--line-hairline-on-dark);
+--state-match:var(--spruce-0);
+--state-confirm:var(--amber-0);
+--state-unknown:var(--grey-0);
+--state-excluded:var(--brick-0);
+--stamp-fresh:var(--ink-0);
+--stamp-aging:var(--ink-3);
+--stamp-unconfirmed:var(--amber-0);
+}

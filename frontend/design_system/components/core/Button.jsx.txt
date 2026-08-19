@@ -1,0 +1,35 @@
+import React from 'react';
+
+export function Button({ children, variant = 'primary', size = 'md', as = 'button', href, disabled = false, icon, onClick, type = 'button' }) {
+  const base = {
+    fontFamily: 'var(--font-display)',
+    fontWeight: 700,
+    letterSpacing: 'var(--tracking-label)',
+    textTransform: 'uppercase',
+    fontSize: size === 'sm' ? '12px' : '13px',
+    padding: size === 'sm' ? '9px 14px' : '13px 20px',
+    borderRadius: 'var(--radius-sm)',
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '8px',
+    cursor: disabled ? 'not-allowed' : 'pointer',
+    opacity: disabled ? 0.5 : 1,
+    textDecoration: 'none',
+    transition: 'transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard), background var(--dur-fast) var(--ease-standard)',
+    border: '1px solid transparent',
+  };
+  const variants = {
+    primary: { background: 'var(--ink-0)', color: 'var(--text-on-plate)', boxShadow: 'var(--shadow-plate-sm)' },
+    secondary: { background: 'transparent', color: 'var(--text-primary)', border: '1px solid var(--ink-0)' },
+    ghost: { background: 'transparent', color: 'var(--accent-strong)', padding: 0, textTransform: 'none', fontFamily: 'var(--font-body)', fontWeight: 600, textDecoration: 'underline' },
+  };
+  const style = { ...base, ...variants[variant] };
+  const handlers = disabled ? {} : {
+    onMouseDown: e => { e.currentTarget.style.transform = 'translate(2px,2px)'; e.currentTarget.style.boxShadow = 'none'; },
+    onMouseUp: e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = variants[variant].boxShadow || 'none'; },
+    onMouseLeave: e => { e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = variants[variant].boxShadow || 'none'; },
+  };
+  const content = React.createElement(React.Fragment, null, icon, children);
+  if (as === 'a') return React.createElement('a', { href, style, onClick, ...handlers }, content);
+  return React.createElement('button', { type, style, onClick, disabled, ...handlers }, content);
+}

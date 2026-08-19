@@ -1,0 +1,18 @@
+import React from 'react';
+
+export function Textarea({ label, name, placeholder, rows = 4, required = false, value, onChange }) {
+  const id = 'ta-' + name;
+  return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+    label && React.createElement('label', { htmlFor: id, style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--text-secondary)' } }, label, required && ' *'),
+    React.createElement('textarea', {
+      id, name, placeholder, rows, required, value, onChange,
+      style: {
+        fontFamily: 'var(--font-body)', fontSize: 'var(--fs-body)', color: 'var(--text-primary)',
+        background: 'var(--surface-recessed)', border: '1px solid var(--ink-2)', borderRadius: 'var(--radius-sm)',
+        padding: '10px', outline: 'none', resize: 'vertical', transition: 'border-color var(--dur-base) var(--ease-standard)',
+      },
+      onFocus: e => { e.target.style.borderColor = 'var(--accent)'; },
+      onBlur: e => { e.target.style.borderColor = 'var(--ink-2)'; },
+    })
+  );
+}

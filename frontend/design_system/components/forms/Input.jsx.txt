@@ -1,0 +1,18 @@
+import React from 'react';
+
+export function Input({ label, name, type = 'text', placeholder, required = false, value, onChange }) {
+  const id = 'in-' + name;
+  return React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '6px' } },
+    label && React.createElement('label', { htmlFor: id, style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: 'var(--tracking-label)', textTransform: 'uppercase', color: 'var(--text-secondary)' } }, label, required && ' *'),
+    React.createElement('input', {
+      id, name, type, placeholder, required, value, onChange,
+      style: {
+        fontFamily: 'var(--font-body)', fontSize: 'var(--fs-body)', color: 'var(--text-primary)',
+        background: 'transparent', border: 'none', borderBottom: '2px solid var(--ink-1)',
+        padding: '8px 2px', outline: 'none', transition: 'border-color var(--dur-base) var(--ease-standard)',
+      },
+      onFocus: e => { e.target.style.borderBottomColor = 'var(--accent)'; },
+      onBlur: e => { e.target.style.borderBottomColor = 'var(--ink-1)'; },
+    })
+  );
+}

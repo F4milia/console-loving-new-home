@@ -1,0 +1,18 @@
+import React from 'react';
+
+export function RequirementToggle({ label, shortcut, active = false, onToggle }) {
+  return React.createElement('button', {
+    type: 'button', onClick: onToggle,
+    style: {
+      fontFamily: 'var(--font-body)', fontSize: '13px', fontWeight: 600,
+      color: active ? 'var(--text-on-plate)' : 'var(--text-primary)',
+      background: active ? 'var(--ink-0)' : 'transparent',
+      border: '1px solid var(--ink-0)', borderRadius: 'var(--radius-sm)',
+      padding: '7px 10px', display: 'inline-flex', alignItems: 'center', gap: '8px', cursor: 'pointer',
+      transition: 'background var(--dur-fast) var(--ease-standard), color var(--dur-fast) var(--ease-standard)',
+    },
+  },
+    React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '10px', border: `1px solid ${active ? 'var(--text-on-plate)' : 'var(--ink-3)'}`, borderRadius: '2px', padding: '0 4px', opacity: 0.85 } }, shortcut),
+    label
+  );
+}

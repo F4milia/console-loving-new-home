@@ -1,0 +1,8 @@
+import React from 'react';
+
+export function Checkbox({ label, name, checked, onChange, required = false }) {
+  return React.createElement('label', { style: { display: 'flex', alignItems: 'flex-start', gap: '10px', cursor: 'pointer', fontFamily: 'var(--font-body)', fontSize: 'var(--fs-body-sm)', color: 'var(--text-primary)' } },
+    React.createElement('input', { type: 'checkbox', name, checked, onChange, required, style: { marginTop: '3px', width: '16px', height: '16px', accentColor: 'var(--ink-0)', borderRadius: 0, flexShrink: 0 } }),
+    React.createElement('span', null, label)
+  );
+}

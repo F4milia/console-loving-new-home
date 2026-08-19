@@ -1,0 +1,9 @@
+:root{
+--shadow-plate:3px 3px 0 rgba(30,46,44,0.9);
+--shadow-plate-sm:2px 2px 0 rgba(30,46,44,0.85);
+--shadow-card:0 1px 0 rgba(30,46,44,0.06),0 1px 3px rgba(30,46,44,0.06);
+--shadow-none:none;
+--ease-standard:cubic-bezier(.2,.6,.2,1); /* @kind other */
+--dur-fast:120ms; /* @kind other */
+--dur-base:180ms; /* @kind other */
+}

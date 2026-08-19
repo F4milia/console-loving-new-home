@@ -1,0 +1,20 @@
+import React from 'react';
+
+export function Badge({ children, tone = 'accent' }) {
+  const tones = {
+    accent: { color: 'var(--accent-strong)', border: '1px solid var(--accent-soft)' },
+    neutral: { color: 'var(--text-secondary)', border: '1px solid var(--border-default)' },
+    onPlate: { color: 'var(--accent-soft)', border: '1px solid var(--border-on-plate)' },
+  };
+  const style = {
+    fontFamily: 'var(--font-mono)',
+    fontSize: '11px',
+    letterSpacing: 'var(--tracking-label)',
+    textTransform: 'uppercase',
+    padding: '4px 8px',
+    borderRadius: 'var(--radius-sm)',
+    display: 'inline-block',
+    ...tones[tone],
+  };
+  return React.createElement('span', { style }, children);
+}

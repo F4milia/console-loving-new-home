@@ -1,0 +1,20 @@
+import React from 'react';
+
+export function Tooltip({ children, label }) {
+  const [open, setOpen] = React.useState(false);
+  return React.createElement('span', {
+    style: { position: 'relative', display: 'inline-flex' },
+    onMouseEnter: () => setOpen(true),
+    onMouseLeave: () => setOpen(false),
+  },
+    children,
+    open && React.createElement('span', {
+      style: {
+        position: 'absolute', bottom: 'calc(100% + 6px)', left: '50%', transform: 'translateX(-50%)',
+        background: 'var(--surface-plate)', color: 'var(--text-on-plate)', fontFamily: 'var(--font-body)',
+        fontSize: '12px', padding: '6px 10px', borderRadius: 'var(--radius-sm)', whiteSpace: 'nowrap',
+        boxShadow: 'var(--shadow-plate-sm)', zIndex: 10,
+      },
+    }, label)
+  );
+}
