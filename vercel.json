@@ -1,4 +1,4 @@
-{ 
+{
   "rewrites": [
     {
       "source": "/api/:path*",
@@ -6,7 +6,7 @@
     },
     {
       "source": "/",
-      "destination": "/frontend/design_system/ui_kits/console/index.html"
+      "destination": "/frontend/design_system/ui_kits/console/index.live.html"
     }
   ]
 }
