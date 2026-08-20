@@ -1,7 +1,7 @@
-# LovingNewHome Design System
+# Care Vineyard Design System
 
 ## Company & context
-LovingNewHome is a senior-living placement guide serving Hamilton, Butler, Warren, and Clermont counties (Cincinnati-area Ohio). It helps hospital/nursing-home social workers, discharge planners, elder-law attorneys, and adult children (40s–60s) evaluate care options for an aging relative.
+Care Vineyard is a senior-living placement guide serving Hamilton, Butler, Warren, and Clermont counties (Cincinnati-area Ohio). It helps hospital/nursing-home social workers, discharge planners, elder-law attorneys, and adult children (40s–60s) evaluate care options for an aging relative.
 
 The single, defining constraint: **visitors are checking whether this service is legitimate**, in about 20 seconds — not browsing. Professionals are wary of referral services that take undisclosed placement fees; families in crisis are wary of sales pressure. The entire design personality is built around disclosing the business model up front, plainly, as the most confident element on the page — not fine print.
 
@@ -41,7 +41,7 @@ No existing codebase, Figma file, or brand assets were attached to this project 
 No icon set was supplied with the brief. **Lucide** (open, thin-stroke line icons, MIT licensed) is used via CDN as the nearest match to the brand's flat, unornamented signage aesthetic — stroke width ~1.6–1.8, no fills, no duotone, no emoji. Icons appear only where they clarify direction (an arrow on each directory row) or a contact method (phone/mail) — never as decoration. This is a substitution; if the client has a preferred icon set, swap it in `guidelines/iconography.card.html` and the `DirectoryTile`/contact markup.
 
 ## Font note (flag for the user)
-No font files were provided. Archivo, Public Sans, and IBM Plex Mono are loaded from Google Fonts as the nearest open substitutes for a signage grotesk / humanist body / mono numeral set; **Martian Mono** was added for the console's figures (bed counts, rates), per that brief's explicit call-out. **If LovingNewHome has (or wants) licensed brand fonts, please provide the files** and they'll replace the CDN import in `tokens/fonts.css`.
+No font files were provided. Archivo, Public Sans, and IBM Plex Mono are loaded from Google Fonts as the nearest open substitutes for a signage grotesk / humanist body / mono numeral set; **Martian Mono** was added for the console's figures (bed counts, rates), per that brief's explicit call-out. **If Care Vineyard has (or wants) licensed brand fonts, please provide the files** and they'll replace the CDN import in `tokens/fonts.css`.
 
 ## Logo concepts
 No brand mark was supplied, so four original directions were explored (all avoiding hearts, house outlines, cradling hands, suns, trees, swooshes):
@@ -61,11 +61,11 @@ Standard set, sized to this brief (no source component library existed, so this 
 
 ## Products
 Two surfaces exist in this system:
-1. **Public site** (`ui_kits/website/`) — LovingNewHome.com, the single-page marketing/trust page (see above).
+1. **Public site** (`ui_kits/website/`) — CareVineyard.com, the single-page marketing/trust page (see above).
 2. **Internal console** (`ui_kits/console/`) — a private, login-gated operational tool for 1–3 placement-advisor staff. One `Console` component with an in-page screen switcher (not a nav sidebar — a flat top tab bar) covering: Match console (primary — keyboard-first intake + the bed-board results column), Facility detail (every field with its own staleness stamp), Facility list (sortable, survey completeness visible), Weekly openings (plain mono list formatted to paste into a partner email). Figures are set in Martian Mono; the console consistently uses a single 3px radius (`--radius-sm`) with no larger radii. Motion is limited to the stamp-landing animation (`@keyframes lnh-stamp-land`, 180ms, rotate+overshoot), guarded by `prefers-reduced-motion`.
 
 ## UI kits
-- `ui_kits/website/` — the full single-page LovingNewHome.com recreation: sticky header, directory-board hero (4 routes), fee disclosure plate, what-we-do/don't-do, service-area badges, contact section (phone/email + short form), footer.
+- `ui_kits/website/` — the full single-page CareVineyard.com recreation: sticky header, directory-board hero (4 routes), fee disclosure plate, what-we-do/don't-do, service-area badges, contact section (phone/email + short form), footer.
 - `ui_kits/console/` — the four console screens described above, composing MatchPlate/StaleStamp/RequirementToggle plus core/forms components.
 
 ## Index
@@ -74,7 +74,7 @@ Two surfaces exist in this system:
 - `base.css` — global resets/link states
 - `guidelines/` — 14 foundation specimen cards (colors, type, spacing, plates/shadows, radii, borders, wordmark, directory motif, fee-plate motif, iconography, grid)
 - `components/core/`, `components/forms/`, `components/brand/`, `components/console/` — see above
-- `ui_kits/website/` — the LovingNewHome.com single page (`index.html`, `sections.jsx`)
+- `ui_kits/website/` — the CareVineyard.com single page (`index.html`, `sections.jsx`)
 - `ui_kits/console/` — the internal operational console, 4 screens (`index.html`, `sections.jsx`)
 - `thumbnail.html` — homepage tile
 - `SKILL.md` — Claude-Code-compatible skill export

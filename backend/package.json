@@ -1,7 +1,7 @@
 {
   "name": "lnh-console-backend",
   "version": "1.0.0",
-  "description": "LovingNewHome Console backend - match engine + facility API (Postgres-backed, shares the loving-new-home database)",
+  "description": "Care Vineyard Console backend - match engine + facility API (Postgres-backed, shares the loving-new-home database)",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

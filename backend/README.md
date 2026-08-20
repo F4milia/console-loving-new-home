@@ -1,4 +1,4 @@
-# LovingNewHome Console — Backend (business logic only, no SQL/Airtable yet)
+# Care Vineyard Console — Backend (business logic only, no SQL/Airtable yet)
 
 This implements the **match engine and API surface** described in the design
 handoff (`design_handoff_console/README.md`), against an **in-memory store**

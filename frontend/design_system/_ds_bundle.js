@@ -139,7 +139,7 @@ function RoomPlateMark({ size = 'md' }) {
       fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: fs, letterSpacing: '0.14em',
       textTransform: 'uppercase', padding: pad, borderRadius: 'var(--radius-sm)',
     },
-  }, 'LovingNewHome');
+  }, 'Care Vineyard');
 }
 
 function RequirementToggle({ label, shortcut, active = false, onToggle }) {
