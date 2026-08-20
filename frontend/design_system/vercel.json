@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/ui_kits/console/index.html"
-    }
-  ]
-}
