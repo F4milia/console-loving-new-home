@@ -4,7 +4,7 @@
 // instead of the hardcoded FACILITIES fixture.
 //
 // Swap API_BASE if the backend isn't on localhost:3001.
-const API_BASE = window.LNH_API_BASE || 'http://localhost:3001';
+const API_BASE = window.LNH_API_BASE ?? 'http://localhost:3001';
 
 const { MatchPlate, RequirementToggle, StaleStamp, Button, Input, Badge, RoomPlateMark } = window.LovingNewHomeDesignSystem_f5372f;
 
