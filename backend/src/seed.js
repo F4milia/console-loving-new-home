@@ -31,6 +31,7 @@ const facilities = [
       lastSiteVisit: field('2026-07-14', '2026-07-14'),
       wanderGuard: field(true, '2026-08-18'),
       memoryCareUnit: field(true, '2026-08-18'),
+      telephone: field('(513) 555-0101', '2026-08-18'),
     },
   },
   {
@@ -50,6 +51,7 @@ const facilities = [
       lastSiteVisit: field(null, null),
       wanderGuard: field(true, '2026-08-02'),
       memoryCareUnit: field(true, '2026-08-02'),
+      telephone: field('(513) 555-0102', '2026-08-02'),
     },
   },
   {
@@ -69,6 +71,7 @@ const facilities = [
       lastSiteVisit: field(null, null),
       wanderGuard: field(null, null),
       memoryCareUnit: field(true, '2026-05-01'),
+      telephone: field(null, null),
     },
   },
   {
@@ -88,6 +91,7 @@ const facilities = [
       lastSiteVisit: field('2026-06-30', '2026-06-30'),
       wanderGuard: field(true, '2026-06-30'),
       memoryCareUnit: field(false, '2026-06-30'),
+      telephone: field('(513) 555-0104', '2026-06-30'),
     },
   },
   {
@@ -107,6 +111,7 @@ const facilities = [
       lastSiteVisit: field('2026-08-01', '2026-08-01'),
       wanderGuard: field(true, '2026-08-19'),
       memoryCareUnit: field(true, '2026-08-19'),
+      telephone: field('(513) 555-0105', '2026-08-19'),
     },
   },
   {
@@ -126,6 +131,7 @@ const facilities = [
       lastSiteVisit: field('2026-08-10', '2026-08-10'),
       wanderGuard: field(true, '2026-08-19'),
       memoryCareUnit: field(true, '2026-08-19'),
+      telephone: field('(513) 555-0106', '2026-08-19'),
     },
   },
   {
@@ -145,6 +151,7 @@ const facilities = [
       lastSiteVisit: field('2026-07-28', '2026-07-28'),
       wanderGuard: field(false, '2026-08-05'),
       memoryCareUnit: field(false, '2026-08-05'),
+      telephone: field('(513) 555-0107', '2026-08-05'),
     },
   },
   {
@@ -164,6 +171,7 @@ const facilities = [
       lastSiteVisit: field('2026-08-01', '2026-08-01'),
       wanderGuard: field(true, '2026-08-12'),
       memoryCareUnit: field(true, '2026-08-12'),
+      telephone: field('(513) 555-0108', '2026-08-12'),
     },
   },
   {
@@ -183,6 +191,7 @@ const facilities = [
       lastSiteVisit: field('2026-08-05', '2026-08-05'),
       wanderGuard: field(true, '2026-08-16'),
       memoryCareUnit: field(true, '2026-08-16'),
+      telephone: field('(513) 555-0109', '2026-08-16'),
     },
   },
   {
@@ -202,6 +211,7 @@ const facilities = [
       lastSiteVisit: field(null, null),
       wanderGuard: field(null, null),
       memoryCareUnit: field(false, '2026-04-10'),
+      telephone: field(null, null),
     },
   },
   {
@@ -221,6 +231,7 @@ const facilities = [
       lastSiteVisit: field('2026-08-14', '2026-08-14'),
       wanderGuard: field(true, '2026-08-14'),
       memoryCareUnit: field(true, '2026-08-14'),
+      telephone: field('(513) 555-0111', '2026-08-14'),
     },
   },
   {
@@ -240,6 +251,7 @@ const facilities = [
       lastSiteVisit: field('2026-06-20', '2026-06-20'),
       wanderGuard: field(true, '2026-07-01'),
       memoryCareUnit: field(false, '2026-07-01'),
+      telephone: field('(513) 555-0112', '2026-07-01'),
     },
   },
 ];

@@ -172,6 +172,7 @@ function evaluateAll(facilities, query) {
       id: facility.id,
       name: facility.name,
       county: facility.county,
+      telephone: facility.fields.telephone ? facility.fields.telephone.value : null,
       completeness,
       ...result,
     });

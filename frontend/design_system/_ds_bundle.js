@@ -189,7 +189,7 @@ const STATE = {
   excluded: { label: 'EXCLUDED', color: 'var(--state-excluded)', bg: 'var(--surface-recessed)', struck: true },
 };
 
-function MatchPlate({ name, county, figures = [], reasoning, state = 'match', date, confirmItem }) {
+function MatchPlate({ name, county, telephone, figures = [], reasoning, state = 'match', date, confirmItem }) {
   const s = STATE[state];
   return React.createElement('div', {
     style: {
@@ -202,7 +202,10 @@ function MatchPlate({ name, county, figures = [], reasoning, state = 'match', da
       React.createElement('span', { style: { fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: '17px', textDecoration: s.struck ? 'line-through' : 'none', color: 'var(--text-primary)' } }, name),
       React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.05em', color: s.color, fontWeight: 700 } }, s.label)
     ),
-    county && React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' } }, county),
+    (county || telephone) && React.createElement('div', { style: { display: 'flex', gap: '10px', flexWrap: 'wrap' } },
+      county && React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)' } }, county),
+      React.createElement('span', { style: { fontFamily: 'var(--font-mono-figures)', fontSize: '11px', color: 'var(--text-muted)', fontStyle: telephone ? 'normal' : 'italic' } }, telephone || 'No phone on file')
+    ),
     figures.length > 0 && React.createElement('div', { style: { fontFamily: 'var(--font-mono-figures)', fontSize: '13px', color: 'var(--text-secondary)', display: 'flex', gap: '10px', flexWrap: 'wrap' } },
       figures.map((f, i) => React.createElement('span', { key: i }, f))
     ),

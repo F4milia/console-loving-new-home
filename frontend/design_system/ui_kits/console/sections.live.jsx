@@ -34,6 +34,7 @@ function MatchConsoleScreen() {
   const [showExcluded, setShowExcluded] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [error, setError] = React.useState(null);
+  const [nameQuery, setNameQuery] = React.useState('');
 
   const toggle = k => setReqs(r => ({ ...r, [k]: !r[k] }));
 
@@ -74,15 +75,20 @@ function MatchConsoleScreen() {
     return () => clearTimeout(handle);
   }, [reqs, budget]);
 
-  const Section = (label, items) => items.length > 0 && React.createElement('div', { style: { marginBottom: '18px' } },
-    React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' } }, `${label} (${items.length})`),
-    React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
-      items.map(f => React.createElement(MatchPlate, {
-        key: f.id, name: f.name, county: f.county, figures: f.figures, reasoning: f.reasoning,
-        state: f.state, confirmItem: f.confirmItem, date: f.staleness ? f.staleness.confirmedAt : undefined,
-      }))
-    )
-  );
+  const matchesQuery = f => f.name.toLowerCase().includes(nameQuery.trim().toLowerCase());
+
+  const Section = (label, items) => {
+    const filtered = items.filter(matchesQuery);
+    return filtered.length > 0 && React.createElement('div', { style: { marginBottom: '18px' } },
+      React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)', marginBottom: '8px' } }, `${label} (${filtered.length})`),
+      React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
+        filtered.map(f => React.createElement(MatchPlate, {
+          key: f.id, name: f.name, county: f.county, telephone: f.telephone, figures: f.figures, reasoning: f.reasoning,
+          state: f.state, confirmItem: f.confirmItem, date: f.staleness ? f.staleness.confirmedAt : undefined,
+        }))
+      )
+    );
+  };
 
   return React.createElement('div', { style: { padding: '20px', maxWidth: '820px', margin: '0 auto' } },
     error && React.createElement('div', { style: { color: 'var(--state-excluded)', fontFamily: 'var(--font-mono)', fontSize: '12px', marginBottom: '12px' } }, `Error: ${error} — is the backend running on ${API_BASE}?`),
@@ -93,16 +99,17 @@ function MatchConsoleScreen() {
         React.createElement(RequirementToggle, { label: 'Insulin dependent', shortcut: 'I', active: reqs.I, onToggle: () => toggle('I') }),
         React.createElement(RequirementToggle, { label: 'Memory care', shortcut: 'M', active: reqs.M, onToggle: () => toggle('M') })
       ),
-      React.createElement('div', { style: { width: '160px' } }, React.createElement(Input, { label: 'Budget / mo', name: 'budget', placeholder: '4800', value: budget, onChange: e => setBudget(e.target.value) }))
+      React.createElement('div', { style: { width: '160px' } }, React.createElement(Input, { label: 'Budget / mo', name: 'budget', placeholder: '4800', value: budget, onChange: e => setBudget(e.target.value) })),
+      React.createElement('div', { style: { width: '220px' } }, React.createElement(Input, { label: 'Search by name', name: 'nameQuery', placeholder: 'Facility name…', value: nameQuery, onChange: e => setNameQuery(e.target.value) }))
     ),
     loading && React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', marginBottom: '10px' } }, 'Matching…'),
     Section('Match', groups.match),
     Section('Confirm needed', groups.confirm),
     Section('Unknown', groups.unknown),
-    React.createElement('div', { onClick: () => setShowExcluded(!showExcluded), style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)', cursor: 'pointer', borderTop: '2px solid var(--state-excluded)', paddingTop: '10px', marginTop: '4px' } }, `Excluded (${groups.excluded.length}) — ${showExcluded ? 'hide' : 'show'}`),
+    React.createElement('div', { onClick: () => setShowExcluded(!showExcluded), style: { fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.06em', textTransform: 'uppercase', color: 'var(--text-muted)', cursor: 'pointer', borderTop: '2px solid var(--state-excluded)', paddingTop: '10px', marginTop: '4px' } }, `Excluded (${groups.excluded.filter(matchesQuery).length}) — ${showExcluded ? 'hide' : 'show'}`),
     showExcluded && React.createElement('div', { style: { display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '10px' } },
-      groups.excluded.map(f => React.createElement(MatchPlate, {
-        key: f.id, name: f.name, county: f.county, figures: f.figures, reasoning: f.reasoning,
+      groups.excluded.filter(matchesQuery).map(f => React.createElement(MatchPlate, {
+        key: f.id, name: f.name, county: f.county, telephone: f.telephone, figures: f.figures, reasoning: f.reasoning,
         state: f.state, date: f.staleness ? f.staleness.confirmedAt : undefined,
       }))
     )
@@ -164,6 +171,7 @@ function FacilityListScreen() {
   const [error, setError] = React.useState(null);
   const [expanded, setExpanded] = React.useState(() => new Set());
   const [details, setDetails] = React.useState({}); // facilityId -> 'loading' | { rows } | { error }
+  const [nameQuery, setNameQuery] = React.useState('');
   const cols = [['name', 'Facility'], ['county', 'County'], ['completeness', 'Survey completeness'], ['lastConfirmed', 'Last confirmed']];
 
   React.useEffect(() => {
@@ -197,13 +205,17 @@ function FacilityListScreen() {
     }
   };
 
+  const filteredRows = rows.filter(f => f.name.toLowerCase().includes(nameQuery.trim().toLowerCase()));
+
   return React.createElement('div', { style: { padding: '20px', maxWidth: '900px', margin: '0 auto' } },
     error && React.createElement('div', { style: { color: 'var(--state-excluded)', fontFamily: 'var(--font-mono)', fontSize: '12px', marginBottom: '12px' } }, `Error: ${error}`),
+    React.createElement('div', { style: { maxWidth: '260px', marginBottom: '14px' } }, React.createElement(Input, { label: 'Search by name', name: 'facilityNameQuery', placeholder: 'Facility name…', value: nameQuery, onChange: e => setNameQuery(e.target.value) })),
     React.createElement('div', { style: { display: 'grid', gridTemplateColumns: '20px 2fr 1.2fr 1.2fr 1fr', borderBottom: '1px solid var(--ink-0)', paddingBottom: '8px', marginBottom: '4px' } },
       React.createElement('span', null),
       cols.map(([key, label]) => React.createElement('button', { key, onClick: () => setSortKey(key), style: { background: 'none', border: 'none', textAlign: 'left', cursor: 'pointer', fontFamily: 'var(--font-mono)', fontSize: '11px', letterSpacing: '0.05em', textTransform: 'uppercase', color: sortKey === key ? 'var(--accent-strong)' : 'var(--text-muted)' } }, label))
     ),
-    rows.map(f => {
+    filteredRows.length === 0 && React.createElement('div', { style: { fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)', padding: '16px 0' } }, 'No facilities match that name.'),
+    filteredRows.map(f => {
       const isOpen = expanded.has(f.id);
       const detail = details[f.id];
       return React.createElement('div', { key: f.id, style: { borderBottom: '1px solid var(--border-default)' } },

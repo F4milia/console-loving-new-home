@@ -39,6 +39,7 @@ const FIELD_KEYS = [
   'lastSiteVisit',
   'wanderGuard',
   'memoryCareUnit',
+  'telephone',
 ];
 
 function shapeFacility(facilityRow, fieldRows) {

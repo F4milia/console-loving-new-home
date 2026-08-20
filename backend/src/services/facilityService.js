@@ -19,6 +19,7 @@ const FIELD_LABELS = {
   lastSiteVisit: 'Last site visit',
   wanderGuard: 'Wander guard',
   memoryCareUnit: 'Memory care unit',
+  telephone: 'Telephone',
 };
 
 async function getFacilityDetail(id) {
