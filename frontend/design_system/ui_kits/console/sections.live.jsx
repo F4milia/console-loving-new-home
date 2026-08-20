@@ -123,6 +123,34 @@ function FacilityDetailRows({ rows }) {
   );
 }
 
+// Keeps the collapsible mounted at all times and animates max-height/opacity
+// between its measured content height and 0, instead of hard mount/unmount —
+// a ResizeObserver re-measures while open since detail rows arrive async
+// (loading -> loaded) after the row is first expanded.
+function CollapsiblePanel({ isOpen, children }) {
+  const innerRef = React.useRef(null);
+  const [height, setHeight] = React.useState(0);
+
+  React.useLayoutEffect(() => {
+    const el = innerRef.current;
+    if (!el) return;
+    setHeight(isOpen ? el.scrollHeight : 0);
+    if (!isOpen || typeof ResizeObserver === 'undefined') return;
+    const ro = new ResizeObserver(() => setHeight(el.scrollHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [isOpen, children]);
+
+  return React.createElement('div', {
+    style: {
+      maxHeight: height + 'px',
+      opacity: isOpen ? 1 : 0,
+      overflow: 'hidden',
+      transition: 'max-height var(--dur-base) var(--ease-standard), opacity var(--dur-base) var(--ease-standard)',
+    },
+  }, React.createElement('div', { ref: innerRef, style: { paddingBottom: '12px' } }, children));
+}
+
 function formatValue(v) {
   if (v === null || v === undefined) return '—';
   if (Array.isArray(v)) return v.join(', ');
@@ -178,10 +206,10 @@ function FacilityListScreen() {
     rows.map(f => {
       const isOpen = expanded.has(f.id);
       const detail = details[f.id];
-      return React.createElement(React.Fragment, { key: f.id },
+      return React.createElement('div', { key: f.id, style: { borderBottom: '1px solid var(--border-default)' } },
         React.createElement('div', {
           onClick: () => toggleExpanded(f.id),
-          style: { display: 'grid', gridTemplateColumns: '20px 2fr 1.2fr 1.2fr 1fr', padding: '12px 0', borderBottom: isOpen ? 'none' : '1px solid var(--border-default)', alignItems: 'center', cursor: 'pointer' },
+          style: { display: 'grid', gridTemplateColumns: '20px 2fr 1.2fr 1.2fr 1fr', padding: '12px 0', alignItems: 'center', cursor: 'pointer' },
         },
           React.createElement('span', { style: { fontFamily: 'var(--font-mono)', fontSize: '11px', color: 'var(--text-muted)', transform: isOpen ? 'rotate(90deg)' : 'none', transition: 'transform var(--dur-fast) var(--ease-standard)', display: 'inline-block' } }, '▸'),
           React.createElement('span', { style: { fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: '14px' } }, f.name),
@@ -189,7 +217,7 @@ function FacilityListScreen() {
           React.createElement('span', { style: { fontFamily: 'var(--font-mono-figures)', fontSize: '12px', color: f.completeness.fraction === 1 ? 'var(--text-primary)' : 'var(--state-confirm)' } }, f.completeness.display),
           f.lastConfirmed ? React.createElement(StaleStamp, { date: f.lastConfirmed.confirmedAt }) : React.createElement(Badge, { tone: 'neutral' }, 'No data')
         ),
-        isOpen && React.createElement('div', { style: { paddingBottom: '12px', borderBottom: '1px solid var(--border-default)' } },
+        React.createElement(CollapsiblePanel, { isOpen },
           detail === 'loading' && React.createElement('div', { style: { padding: '12px 16px', fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--text-muted)' } }, 'Loading…'),
           detail && detail.error && React.createElement('div', { style: { padding: '12px 16px', fontFamily: 'var(--font-mono)', fontSize: '12px', color: 'var(--state-excluded)' } }, `Error: ${detail.error}`),
           detail && detail.rows && React.createElement(FacilityDetailRows, { rows: detail.rows })
