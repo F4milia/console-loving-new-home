@@ -9,8 +9,9 @@
 <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <script src="../../_ds_bundle.js"></script>
 <script>
-  // Point this at wherever `npm start` is serving the backend.
-  window.LNH_API_BASE = 'http://localhost:3001';
+  // Same-origin deployment: frontend and API share this domain.
+  // Empty string means fetch() calls (which already include /api/...) resolve correctly.
+  window.LNH_API_BASE = '';
 </script>
 </head>
 <body style="margin:0;background:var(--surface-page)">
